@@ -76,9 +76,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(UnstableApi::class)
     private fun playWithFile() {
         val musicPlayer = MusicPlayer(playbackState)
-        val rawResourceDataSource = RawResourceDataSource(this)
-        rawResourceDataSource.open(DataSpec(RawResourceDataSource.buildRawResourceUri(R.raw.music)))
-        val uri = rawResourceDataSource.uri ?: return
+        val uri = Uri.parse("android.resource://${packageName}/${R.raw.music}")
         if (exoPlayer == null) {
             exoPlayer = ExoPlayer.Builder(this).build()
         }
